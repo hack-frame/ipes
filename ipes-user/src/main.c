@@ -1,11 +1,6 @@
 #include <stdio.h>
-#include <ipesClient.h>
-
-void fast_exit(char * msg)
-{
-	printf("%s\n", msg);
-	exit(1);
-}
+#include "ipesDefenitions.h"
+#include "ipesFunctions.h"
 
 int main(int argc, char **argv)
 {
