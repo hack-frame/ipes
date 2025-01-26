@@ -1,7 +1,7 @@
-#ifndef IPESDEFENITIONS_H
-#define IPESDEFENITIONS_H
+#ifndef IPES_DEFENITIONS_H
+#define IPES_DEFENITIONS_H
 
-#include "ipesCommon.h"
+#include "ipes_common.h"
 
 #define BUFF_SIZE 1024
 
@@ -13,7 +13,6 @@
 #define true 1
 #define false 0
 typedef char bool;
-typedef unsigned char  us_int;
 
 struct Server_Data {
 	struct sockaddr_in servaddr;
@@ -35,4 +34,4 @@ struct Msg_Data{
 	char      * md5sum;
 };
 
-#endif //IPESDEFENITIONS_H 
+#endif //IPES_DEFENITIONS_H 

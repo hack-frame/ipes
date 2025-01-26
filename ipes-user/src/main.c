@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "ipesDefenitions.h"
-#include "ipesFunctions.h"
+
+#include "ipes_user.h"
 
 int main(int argc, char **argv)
 {
@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-serv = init_server(AF_UNIX, SOCK_STREAM, NULL, 54545);
+	serv = init_serv_data(AF_UNIX, SOCK_STREAM, NULL, 54545);
 /*	init_msg();
 	connect_to_server();
 	send_to_server();

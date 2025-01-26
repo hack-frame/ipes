@@ -1,13 +1,20 @@
 #include <stdio.h>
 
-#include "ipesServer.h"
+#include "ipes_serv_events.h"
 
 int main()
 {
+	struct Server_Data * serv;
 	printf("Hello World\n");
 	//parse_conf()
-	init_server();
-	launch_server();
+	if (!(serv = init_serv(AF_UNIX, SOCK_STREAM, 54545)))
+	{
+		fprintf(stderr, "issue with init_server");
+		return (1);
+	}
+	
+	launch_serv(serv);
 	//stop_server();
+	fprintf(stderr, "we did it\n");
 	return (0);
 }

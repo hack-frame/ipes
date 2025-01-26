@@ -1,7 +1,6 @@
-#include "ipesClient.h"
+#include "ipes_user.h"
 
-
-struct Server_Data * init_server(us_int ip_family, us_int socket_type, char * ip, int port)
+struct Server_Data * init_serv_data(uint8_t ip_family, uint8_t socket_type, char * ip, int port)
 {
         struct Server_Data * serv;
 
@@ -25,7 +24,6 @@ struct Server_Data * init_server(us_int ip_family, us_int socket_type, char * ip
         bzero(&serv->servaddr, sizeof(serv->servaddr));
         serv->servaddr.sin_family = ip_family;
         serv->servaddr.sin_port = htons(port);
-printf("----------\n");
         if (serv->servaddr.sin_family == AF_INET || serv->servaddr.sin_family == AF_INET6)
                 inet_pton(serv->servaddr.sin_family, serv->serv_ip, &serv->servaddr.sin_addr);
 

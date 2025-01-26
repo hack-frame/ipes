@@ -1,5 +1,5 @@
-#ifndef IPESCOMMON_H
-#define IPESCOMMON_H
+#ifndef IPES_COMMON_H
+#define IPES_COMMON_H
 
 // !!! NETWORK LIBS
 #include <sys/socket.h>
@@ -11,4 +11,4 @@
 #include <arpa/inet.h>
 
 
-#endif // end of IPESCOMMON_H
+#endif // end of IPES_COMMON_H

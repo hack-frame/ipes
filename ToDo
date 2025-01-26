@@ -1,0 +1,2 @@
+1. in lib/ should be separate inc file for parsing config. Separate files for parsing and packing messages.
+4. Check could we don't use fast exit for ipes-client

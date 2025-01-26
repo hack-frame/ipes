@@ -1,4 +1,4 @@
-TARGET = ipesServer
+TARGET = ipes-server
 LIB_NAME = libipes.a
 LIB_DIR = lib
 SRC_DIR = src
