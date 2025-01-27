@@ -4,6 +4,6 @@
 
 void fast_exit(char * msg)
 {
-	printf("%s\n", msg);
-	exit(1);
+    printf("%s\n", msg);
+    exit(1);
 }

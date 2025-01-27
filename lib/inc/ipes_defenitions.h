@@ -15,23 +15,25 @@
 typedef char bool;
 
 struct Server_Data {
-	struct sockaddr_in servaddr;
-	int sock_fd;
-	char * serv_ip;
- 	int serv_port;
- 	char buff[BUFF_SIZE];
- 	struct Msg_Data * msg;
+    struct sockaddr_in servaddr;
+    int sock_fd;
+    char * serv_ip;
+    int serv_port;
+    char buff[BUFF_SIZE];
+    struct Ipes_msg * msg;
  };
  
-struct Msg_Data{
-	char        src[FLD_SIZE];
-	char        dst[FLD_SIZE];
-	short int   size;
-	/* ToDo this mechanism */
-	short int   msg_level;
-	short int   protocol_type;
-	char      * data;
-	char      * md5sum;
+struct Ipes_msg{
+    char    src[FLD_SIZE];
+    char    dst[FLD_SIZE];
+    uint8_t size;
+    /* ToDo this mechanism */
+    uint8_t   msg_level;
+    uint8_t   protocol_type;
+    char      * data;
+    char      * md5sum;
+    struct Ipes_msg * next;
+    struct Ipes_msg * prev;
 };
 
 #endif //IPES_DEFENITIONS_H 
