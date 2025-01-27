@@ -7,7 +7,7 @@ int main()
     struct Server_Data * serv;
     printf("Hello World\n");
     //parse_conf()
-    if (!(serv = init_serv(AF_UNIX, SOCK_STREAM, 54545)))
+    if (!(serv = init_serv(AF_INET, SOCK_STREAM, 54545)))
     {
         fprintf(stderr, "issue with init_server");
         return (1);
