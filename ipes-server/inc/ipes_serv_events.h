@@ -5,17 +5,8 @@
 #include "ipes_functions.h"
 
 /*as argument should be path to conf file*/
-struct Server_Data * init_serv(uint8_t ip_family, uint8_t socket_type, int port);
-bool launch_serv(struct Server_Data * serv);
+struct Serv_Info * init_serv(uint8_t ip_family, uint8_t socket_type, int port);
+bool launch_serv(struct Serv_Info * serv);
 
 #endif
 
-/*
-struct Server_Data :
-struct sockaddr_in servaddr;
-int sock_fd;
-char * serv_ip;
-int serv_port;
-char buff[BUFF_SIZE];
-struct Msg_Data * msg;
-*/

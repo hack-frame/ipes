@@ -4,7 +4,7 @@
 
 int main()
 {
-    struct Server_Data * serv;
+    struct Serv_Info * serv;
     printf("Hello World\n");
     //parse_conf()
     if (!(serv = init_serv(AF_INET, SOCK_STREAM, 54545)))

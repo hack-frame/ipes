@@ -4,12 +4,13 @@
 
 int main(int argc, char **argv)
 {
-    struct Server_Data * serv;
-    if (argc != 1)
+    struct Serv_Info * serv;
+    if (argc != 2)
     {
         printf("parsing is not support right now\n");
         return (1);
     }
+    parse_config(argv[2]);
     /* connect serv will be call for Unix and AFINET differently */
 // HAVE to check it and re do code, maybe as 1 function, in struct use pointer not type
 // serv = connect_to_unix_serv(AF_UNIX, SOCK_STREAM, NULL, 54545);

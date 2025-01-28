@@ -2,9 +2,9 @@
 
 #define SERVER_IP "192.168.0.108"
 
-struct Server_Data * connect_to_serv(uint8_t ip_family, uint8_t socket_type, char * ip, int port)
+struct Serv_Info * connect_to_serv(uint8_t ip_family, uint8_t socket_type, char * ip, int port)
 {
-        struct Server_Data * serv;
+        struct Serv_Info * serv;
 
         if (!(socket_type >= 1 && socket_type <= 5) && socket_type != 10)
                 fast_exit("socket type is not correct");
@@ -15,7 +15,7 @@ struct Server_Data * connect_to_serv(uint8_t ip_family, uint8_t socket_type, cha
         if (port < 49152 || port > 65535)
                 fast_exit("port is not correct");
 
-        if (!(serv = (struct Server_Data *)malloc(sizeof(struct Server_Data))))
+        if (!(serv = (struct Serv_Info *)malloc(sizeof(struct Serv_Info))))
         {
             perror("serv malloc failed");
             return NULL;
@@ -26,6 +26,7 @@ struct Server_Data * connect_to_serv(uint8_t ip_family, uint8_t socket_type, cha
         if (serv->sock_fd == -1)
         {
             perror("issue sockfd");
+            free(serv);
             return NULL;
         }
 
@@ -37,11 +38,12 @@ struct Server_Data * connect_to_serv(uint8_t ip_family, uint8_t socket_type, cha
         return serv;
 }
 
-bool send_to_serv(struct Server_Data * serv, struct Ipes_msg * msg)
+bool send_to_serv(struct Serv_Info * serv, struct Ipes_msg * msg)
 {
    if((connect(serv->sock_fd, (struct sockaddr *)&serv->servaddr, sizeof(serv->servaddr)) == -1))
     {
         perror("failed connect to server");
+        free(serv);
         return false;
     }
 

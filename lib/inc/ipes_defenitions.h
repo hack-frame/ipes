@@ -14,7 +14,7 @@
 #define false 0
 typedef char bool;
 
-struct Server_Data {
+struct Serv_Info {
     struct sockaddr_in servaddr;
     int sock_fd;
     char * serv_ip;

@@ -4,11 +4,11 @@
 
 #include "ipes_serv_events.h"
 
-struct Server_Data * init_serv(uint8_t ip_family, uint8_t socket_type, int port)
+struct Serv_Info * init_serv(uint8_t ip_family, uint8_t socket_type, int port)
 {
-	struct Server_Data * serv;
+	struct Serv_Info * serv;
 
-	if (!(serv = (struct Server_Data *)malloc(sizeof(struct Server_Data))))
+	if (!(serv = (struct Serv_Info *)malloc(sizeof(struct Serv_Info))))
 	{
 		fprintf(stderr, "malloc didn't allocated memmory for serv\n");
 		return NULL;
@@ -45,7 +45,7 @@ struct Server_Data * init_serv(uint8_t ip_family, uint8_t socket_type, int port)
 	return serv;
 }
 
-bool launch_serv(struct Server_Data * serv)
+bool launch_serv(struct Serv_Info * serv)
 {
 	int connfd;
  
