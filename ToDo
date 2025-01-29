@@ -1,3 +1,6 @@
 1. in lib/ should be separate inc file for parsing config. Separate files for parsing and packing messages.
-2. Check could we don't use fast exit for ipes-client
+2. Check could we don't use fast exit for ipes-client, or smart fast exit with clean up memmory for all arguments
+    Write function for free Serv_Info
 3. Separate function for Unix socket and Ipv4
+4. Separate header for ipes-user. They don't match with src names
+5. use fixed type evrywhere

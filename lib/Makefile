@@ -1,6 +1,6 @@
 NAME = libipes.a
 CC = gcc
-CFLAG = -c -Wall -Werror -Wextra -I inc
+CFLAG = -c -Wall -Wextra -I inc
 SRC_NAME = $(wildcard src/*.c)
 OBJ_NAME = $(SRC_NAME:.c=.o)
 AR = ar rc
@@ -17,7 +17,7 @@ $(NAME): $(OBJ_NAME)
 	@$(CC) $(CFLAG) $< -o $@
 
 clean:
-	@$(RM) $(OBJ_NAME)
+	@$(RM) $(OBJ_NAME) $(NAME)
 
 fclean: clean
 	@$(RM) $(NAME)

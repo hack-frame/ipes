@@ -16,9 +16,13 @@ typedef char bool;
 
 struct Serv_Info {
     struct sockaddr_in servaddr;
+    char family_type;
+    char sock_type;
     int sock_fd;
-    char * serv_ip;
     int serv_port;
+    char * serv_ip;
+    char * user;
+    char * password; 
     char buff[BUFF_SIZE];
     struct Ipes_msg * msg;
  };
@@ -26,10 +30,10 @@ struct Serv_Info {
 struct Ipes_msg{
     char    src[FLD_SIZE];
     char    dst[FLD_SIZE];
-    uint8_t size;
+    char size;
     /* ToDo this mechanism */
-    uint8_t   msg_level;
-    uint8_t   protocol_type;
+    char   msg_level;
+    char   protocol_type;
     char      * data;
     char      * md5sum;
     struct Ipes_msg * next;

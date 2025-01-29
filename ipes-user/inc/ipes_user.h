@@ -9,11 +9,13 @@
 #include "ipes_defenitions.h"
 #include "ipes_functions.h"
 
-struct  Serv_Info * connect_to_serv(uint8_t ip_family, uint8_t socket_type, char * ip, int port);
-struct  Serv_Info * connect_to_unix_serv(uint8_t ip_family, uint8_t socket_type, char * path, int port);
+struct  Serv_Info * connect_to_serv(char ip_family, char socket_type, char * ip, int port);
+struct  Serv_Info * connect_to_unix_serv(char ip_family, char socket_type, char * path, int port);
 struct  Msg_Data  * init_msg();
 bool    send_to_serv();
 bool    close_serv_conn();
 
+
+struct Serv_Info * parse_config(char * path, char * unit);
 
 #endif /* End IPES_USER_H  */

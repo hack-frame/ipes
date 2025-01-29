@@ -4,7 +4,7 @@
 
 #include "ipes_serv_events.h"
 
-struct Serv_Info * init_serv(uint8_t ip_family, uint8_t socket_type, int port)
+struct Serv_Info * init_serv(char ip_family, char socket_type, int port)
 {
 	struct Serv_Info * serv;
 

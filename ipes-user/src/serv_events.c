@@ -2,7 +2,7 @@
 
 #define SERVER_IP "192.168.0.108"
 
-struct Serv_Info * connect_to_serv(uint8_t ip_family, uint8_t socket_type, char * ip, int port)
+struct Serv_Info * connect_to_serv(char ip_family, char socket_type, char * ip, int port)
 {
         struct Serv_Info * serv;
 
