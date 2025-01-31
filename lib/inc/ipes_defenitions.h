@@ -4,6 +4,7 @@
 #include "ipes_common.h"
 
 #define BUFF_SIZE 1024
+#define DEFAULT_PORT 54545
 
 /* That's mean that src/dst could be string with len5.
  That's mean that max connection for server is 5! = 120
@@ -19,8 +20,8 @@ struct Serv_Info {
     char family_type;
     char sock_type;
     int sock_fd;
-    int serv_port;
-    char * serv_ip;
+    int port;
+    char * ip;
     char * user;
     char * password; 
     char buff[BUFF_SIZE];

@@ -1,41 +1,31 @@
 #include "ipes_user.h"
 
-#define SERVER_IP "192.168.0.108"
-
-struct Serv_Info * connect_to_serv(char ip_family, char socket_type, char * ip, int port)
+bool connect_to_serv(struct Serv_Info * serv)
 {
-        struct Serv_Info * serv;
-
-        if (!(socket_type >= 1 && socket_type <= 5) && socket_type != 10)
+        if (!(serv->sock_type >= 1 && serv->sock_type <= 5) && serv->sock_type != 10)
                 fast_exit("socket type is not correct");
         /* IP string should have separate function to check values */
-        if (ip_family != AF_INET)
+        if (serv->family_type != AF_INET)
                 fast_exit("ip is not correct");
         /* Use only these ports: 49152-65535 */
-        if (port < 49152 || port > 65535)
+        if (serv->port < 49152 || serv->port > 65535)
                 fast_exit("port is not correct");
 
-        if (!(serv = (struct Serv_Info *)malloc(sizeof(struct Serv_Info))))
-        {
-            perror("serv malloc failed");
-            return NULL;
-        }
-
         serv->msg = NULL;
-        serv->sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+        serv->sock_fd = socket(serv->family_type, serv->sock_type, 0);
         if (serv->sock_fd == -1)
         {
             perror("issue sockfd");
             free(serv);
-            return NULL;
+            return false;
         }
 
         bzero(&serv->servaddr, sizeof(serv->servaddr));
-        serv->servaddr.sin_family = ip_family;
-        serv->servaddr.sin_port = htons(port);
-        inet_pton(serv->servaddr.sin_family, SERVER_IP, &serv->servaddr.sin_addr);
+        serv->servaddr.sin_family = serv->family_type;
+        serv->servaddr.sin_port = htons(serv->port);
+        inet_pton(serv->servaddr.sin_family, serv->ip, &serv->servaddr.sin_addr);
 
-        return serv;
+        return false;
 }
 
 bool send_to_serv(struct Serv_Info * serv, struct Ipes_msg * msg)
