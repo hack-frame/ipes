@@ -4,45 +4,34 @@
 
 #include "ipes_serv_events.h"
 
-struct Serv_Info * init_serv(char ip_family, char socket_type, int port)
+bool init_serv(struct Serv_Info * serv)
 {
-	struct Serv_Info * serv;
-
-	if (!(serv = (struct Serv_Info *)malloc(sizeof(struct Serv_Info))))
-	{
-		fprintf(stderr, "malloc didn't allocated memmory for serv\n");
-		return NULL;
-	}
-
-	serv->serv_port = port;
-	serv->sock_fd = 0;
-
-	if ((serv->sock_fd = socket(ip_family, socket_type, 0)) == -1)
+	if ((serv->sock_fd = socket(serv->family_type, serv->sock_type, 0)) == -1)
 	{
 		fprintf(stderr, "socket create failed\n");
-		free(serv);
-		return (NULL);
+		//free_serv;
+		return (false);
 	}
 
 	bzero(&serv->servaddr, sizeof(serv->servaddr));
-	serv->servaddr.sin_family = ip_family;
-	serv->servaddr.sin_port = htons(serv->serv_port);
+	serv->servaddr.sin_family = serv->family_type;
+	serv->servaddr.sin_port = htons(serv->port);
 	serv->servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	if (bind(serv->sock_fd, (struct sockaddr *)&serv->servaddr, sizeof(serv->servaddr)) == -1)
 	{
 		fprintf(stderr, "issue bind\n");
-		free(serv);
-		return NULL;
+//		free_serv !!!
+		return false;
 	}
 	if (listen(serv->sock_fd, 2048) == -1)
 	{
 		fprintf(stderr, "issue listen\n");
-		free(serv);
-		return NULL;
+//		free_serv !!!
+		return false;
 	}	
 
-	return serv;
+	return true;
 }
 
 bool launch_serv(struct Serv_Info * serv)
