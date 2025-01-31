@@ -4,19 +4,23 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include "ipes_defenitions.h"
+
 struct Unit_Block
 {
     char * str;
     struct Unit_Block * next;
 };
 
-char * find_user(FILE * file, char * unit);
-char * find_password(FILE * file, char * unit);
-char * find_ip(FILE * file, char * unit);
-char * find_sock_type(FILE * file, char * unit);
-char * find_family_type(FILE * file, char * unit);
-int find_serv_port(FILE * file, char * unit);
+/* mandatory fields */
+char * find_ip(struct Unit_Block * unit);
+char * find_user(struct Unit_Block * unit);
+char * find_password(struct Unit_Block * unit);
+
+int find_sock_type(struct Unit_Block * unit);
+int find_family_type(struct Unit_Block * unit);
+int find_port(struct Unit_Block * unit);
 struct Unit_Block * find_unit(FILE * file, char * unit);
-void print_unit(struct Unit_Block * unit_block);
+bool print_unit(struct Unit_Block * unit_block);
 
 #endif

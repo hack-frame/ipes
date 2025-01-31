@@ -9,7 +9,7 @@
 #include "ipes_defenitions.h"
 #include "ipes_functions.h"
 
-struct  Serv_Info * connect_to_serv(char ip_family, char socket_type, char * ip, int port);
+bool connect_to_serv(struct Serv_Info * serv);
 struct  Serv_Info * connect_to_unix_serv(char ip_family, char socket_type, char * path, int port);
 struct  Msg_Data  * init_msg();
 bool    send_to_serv();
