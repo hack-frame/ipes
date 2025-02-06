@@ -21,6 +21,8 @@ int find_sock_type(struct Unit_Block * unit);
 int find_family_type(struct Unit_Block * unit);
 int find_port(struct Unit_Block * unit);
 struct Unit_Block * find_unit(FILE * file, char * unit);
-bool print_unit(struct Unit_Block * unit_block);
+
+bool print_unit(struct Unit_Block * unit);
+bool free_unit_block(struct Unit_Block * unit);
 
 #endif

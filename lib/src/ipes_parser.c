@@ -5,12 +5,29 @@
 #include "ipes_parser.h"
 #include "ipes_defenitions.h"
 
-bool print_unit(struct Unit_Block  * unit_block)
+bool free_unit_block(struct Unit_Block * unit)
 {
     struct Unit_Block * tmp_unit;
-    tmp_unit = unit_block;
+    while (unit)
+    {
+        tmp_unit = unit->next;
+        if (unit->str)
+            free(unit->str);
+        if (unit)
+            free(unit);
+        unit = tmp_unit;
+    }
 
-    if (unit_block == NULL)
+    return (true);
+}
+
+
+bool print_unit(struct Unit_Block  * unit)
+{
+    struct Unit_Block * tmp_unit;
+    tmp_unit = unit;
+
+    if (unit == NULL)
         return (false);
     while(tmp_unit != NULL)
     {
@@ -53,7 +70,7 @@ struct Unit_Block * find_unit(FILE * file, char * unit)
     if (is_find == 0)
     {
         perror("didn't find unit");
-//        free_unit_block();
+        free_unit_block(unit_tmp);
         return (NULL);
     }
     rewind(file);
@@ -78,7 +95,7 @@ struct Unit_Block * find_unit(FILE * file, char * unit)
             if (!(unit_block->str = (char *)malloc(sizeof(char) * strlen(line))))
             {
                 perror("malloc failed for str in unit_block");
-//                free_unit_block();
+                free_unit_block(unit_tmp);
                 return (NULL);
             }
             strcpy(unit_block->str, line);
@@ -86,7 +103,7 @@ struct Unit_Block * find_unit(FILE * file, char * unit)
             if (!(unit_block->next = (struct Unit_Block *)malloc(sizeof(struct Unit_Block))))
             {
                 perror("failed allocate mem init_block->next");
-//              free_unit_block();
+                free_unit_block(unit_tmp);
                 return (NULL);
             }
             unit_block = unit_block->next;

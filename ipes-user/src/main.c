@@ -50,6 +50,8 @@ struct Serv_Info * parse_config(char * path, char * unit)
     serv->family_type = find_family_type(unit_block);
     serv->sock_type = find_sock_type(unit_block);
 
+    // free_unit_block !!!
+
     return serv;
 }
 
@@ -59,7 +61,7 @@ int main(int argc, char **argv)
 
     if (argc != 3)
     {
-        printf("parsing is not support right now\n");
+        printf("missed conf and unit as arguments\n");
         return (1);
     }
     if (!(serv = parse_config(argv[1], argv[2])))
