@@ -103,6 +103,12 @@ bool Parser::parse_conf()
         delete unit;
         return (false);
     }
+    if (!(m_sock_type = find_sock_type(unit)))
+    {
+        std::cout << "couldn't find socket type" << std::endl;
+        delete unit;
+        return (false);
+    }
 
     delete unit;
 
