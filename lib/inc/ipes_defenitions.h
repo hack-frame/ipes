@@ -11,9 +11,11 @@
  this parameter could be defined via get method from server */
 #define FLD_SIZE 5
 
-#define true 1
-#define false 0
-typedef char bool;
+#if defined(__GNUC__) && !defined(__GNUG__)
+    #define true 1
+    #define false 0
+    typedef char bool;
+#endif
 
 struct Serv_Info {
     struct sockaddr_in servaddr;

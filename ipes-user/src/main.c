@@ -20,9 +20,9 @@ struct Serv_Info * parse_config(char * path, char * unit)
         perror("malloc in parser");
         return (NULL);
     }
-    if (!(file = fopen(path, "r")))
+    if (!(file = open_file(path)))
     {
-        perror("cannot open file");
+        perror("file is not opened");
         free(serv);
         return (NULL);
     }

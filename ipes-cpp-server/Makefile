@@ -1,14 +1,14 @@
-TARGET = ipes-server
+TARGET = ipes-cpp-server
 LIB_NAME = libipes.a
 LIB_DIR = lib
 SRC_DIR = src
 INC_DIR = inc
 LIB_INC_DIR = $(LIB_DIR)/inc
 
-SRC = $(wildcard $(SRC_DIR)/*.c)
-OBJ = $(SRC:.c=.o)
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ = $(SRC:.cpp=.o)
 
-CC = g++
+CC = g++ -std=c++17
 CFLAGS = -Wall -Wextra -I$(INC_DIR) -I$(LIB_INC_DIR)
 
 all: $(LIB_DIR)/$(LIB_NAME) $(TARGET)
@@ -19,7 +19,7 @@ $(LIB_DIR)/$(LIB_NAME):
 $(TARGET): $(OBJ) $(LIB_DIR)/$(LIB_NAME)
 	$(CC) $(OBJ) -o $@ -L$(LIB_DIR) -lipes
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

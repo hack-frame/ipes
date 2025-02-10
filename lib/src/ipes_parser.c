@@ -38,6 +38,7 @@ bool print_unit(struct Unit_Block  * unit)
     return (true);
 }
 
+/* this function with leaks in both good and bad case */
 struct Unit_Block * find_unit(FILE * file, char * unit)
 {
     struct Unit_Block * unit_block;
@@ -326,3 +327,15 @@ int find_port(struct Unit_Block * unit)
     return ret;
 }
 
+FILE * open_file(char * path)
+{
+    FILE * fd;
+
+    if (!(fd = fopen(path, "r")))
+    {
+        perror("cannot open file");
+        return (0);
+    }
+
+    return (fd);
+}
