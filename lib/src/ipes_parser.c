@@ -279,13 +279,13 @@ int find_sock_type(struct Unit_Block * unit)
     char * value;
 
     ret = 0;
-    if ((value = get_value_by_option(unit, "password")) == NULL)
+    if ((value = get_value_by_option(unit, "SOCK_STREAM")) == NULL)
         value = create_str("SOCK_STREAM");
 
-    if (strcmp(value, "SOCK_STREAM"))
+    if (!strcmp(value, "SOCK_STREAM"))
         ret = 1;
     else
-        fprintf(stderr, "!!!!! family type is not full !!!!!");
+        fprintf(stderr, "!!!!! soc type is not full !!!!!");
 
     free(value);
 
@@ -298,10 +298,10 @@ int find_family_type(struct Unit_Block * unit)
     char * value;
 
     ret = 0;
-    if ((value = get_value_by_option(unit, "password")) == NULL)
+    if ((value = get_value_by_option(unit, "AF_INET")) == NULL)
         value = create_str("AF_INET");
 
-    if (strcmp("AF_INET", value))
+    if (!strcmp("AF_INET", value))
         ret = 2;
     else
         fprintf(stderr, "!!!!! family type is not full !!!!!");
