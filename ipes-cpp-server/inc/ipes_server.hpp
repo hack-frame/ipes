@@ -33,4 +33,10 @@ public:
     bool launch_server();
     bool close_server();
     
+
+    bool create_shared_mem();
+    bool register_service();
+    bool save_msg();
+    bool get_msg();
+    bool check_msg_expr();
 };
